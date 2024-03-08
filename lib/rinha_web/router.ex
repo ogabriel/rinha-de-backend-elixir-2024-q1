@@ -7,5 +7,7 @@ defmodule RinhaWeb.Router do
 
   scope "/api", RinhaWeb do
     pipe_through :api
+
+    resources "/clients", ClientController, except: [:new, :edit]
   end
 end
