@@ -10,7 +10,7 @@ defmodule Rinha.Bank.Client do
   @doc false
   def changeset(client, attrs) do
     client
-    |> cast(attrs, [:limite, :saldo])
+    |> cast(attrs, [:limite, :saldo], empty_values: [])
     |> validate_required([:limite, :saldo])
   end
 end

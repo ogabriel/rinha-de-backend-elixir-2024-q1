@@ -14,7 +14,7 @@ defmodule Rinha.Bank.Transaction do
   @doc false
   def changeset(transaction, attrs) do
     transaction
-    |> cast(attrs, [:valor, :tipo, :descriao])
+    |> cast(attrs, [:valor, :tipo, :descriao], empty_values: [])
     |> validate_required([:valor, :tipo, :descriao])
   end
 end
