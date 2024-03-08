@@ -5,7 +5,7 @@ defmodule RinhaWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/clients", RinhaWeb do
+  scope "/clientes", RinhaWeb do
     pipe_through :api
 
     post("/:id/transacoes", ClientController, :transacoes)
