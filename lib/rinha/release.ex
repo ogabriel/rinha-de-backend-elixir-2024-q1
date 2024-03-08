@@ -5,6 +5,22 @@ defmodule Rinha.Release do
   """
   @app :rinha
 
+  def drop_database do
+    load_app()
+
+    for repo <- repos() do
+      repo.__adapter__.storage_down(repo.config)
+    end
+  end
+
+  def create_database do
+    load_app()
+
+    for repo <- repos() do
+      repo.__adapter__.storage_up(repo.config)
+    end
+  end
+
   def migrate do
     load_app()
 
