@@ -8,7 +8,6 @@ defmodule Rinha.Application do
   @impl true
   def start(_type, _args) do
     children = [
-      RinhaWeb.Telemetry,
       Rinha.Repo,
       {DNSCluster, query: Application.get_env(:rinha, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: Rinha.PubSub},
