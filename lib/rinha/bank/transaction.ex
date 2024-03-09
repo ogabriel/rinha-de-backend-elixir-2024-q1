@@ -20,4 +20,11 @@ defmodule Rinha.Bank.Transaction do
     |> cast(attrs, [:valor, :tipo, :descricao], empty_values: [])
     |> validate_required([:valor, :tipo, :descricao])
   end
+
+  def parse(attrs, client_id) do
+    %__MODULE__{}
+    |> cast(attrs, [:valor, :tipo, :descricao], empty_values: [])
+    |> change(%{client_id: client_id})
+    |> apply_changes
+  end
 end
