@@ -1,4 +1,8 @@
 defmodule RinhaWeb.ClientJSON do
+  def transacoes(%{result: result}) do
+    result
+  end
+
   def extrato(%{client: cliente}) do
     %{
       saldo: %{
