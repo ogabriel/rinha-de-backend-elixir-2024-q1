@@ -10,18 +10,15 @@ defmodule RinhaWeb.ClientController do
 
   action_fallback RinhaWeb.FallbackController
 
-  # {
-  #     "valor": 1000,
-  #     "tipo" : "c",
-  #     "descricao" : "descricao"
-  # }
-
   def transacoes(conn, %{"id" => id} = params) do
     id = parse_id(id)
 
     if is_integer(id) && id > 0 && id < 6 do
       if validate_params(params) do
-        send_resp(conn, 422, "ok")
+        case Bank.transacoes(id, params) do
+          {:ok, result} -> render(conn, :transacoes, result: result)
+          _ -> send_resp(conn, 422, "")
+        end
       else
         send_resp(conn, 422, "")
       end
