@@ -5,7 +5,7 @@ defmodule RinhaWeb.ClientController do
 
   def transacoes(conn, %{"id" => id} = params) do
     with id <- parse_id(id),
-         true <- (is_integer(id) && id > 0 && id < 6) || {:error, :not_found},
+         true <- (is_integer(id) && id > 0) || {:error, :not_found},
          {:ok, result} <- Bank.transacoes(id, params) do
       conn
       |> put_status(200)
@@ -18,7 +18,7 @@ defmodule RinhaWeb.ClientController do
 
   def extrato(conn, %{"id" => id}) do
     with id <- parse_id(id),
-         true <- is_integer(id) && id > 0 && id < 6,
+         true <- is_integer(id) && id > 0,
          [client] <- Bank.extrato(id) do
       render(conn, :extrato, client: client)
     else
