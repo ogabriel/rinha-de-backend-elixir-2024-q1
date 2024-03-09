@@ -63,8 +63,9 @@ defmodule RinhaWeb.ClientController do
   end
 
   defp parse_id(id) do
-    case Integer.parse(id) do
-      {id, _} -> id
+    try do
+      String.to_integer(id)
+    rescue
       _ -> nil
     end
   end
