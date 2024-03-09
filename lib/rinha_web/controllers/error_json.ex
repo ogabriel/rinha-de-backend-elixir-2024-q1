@@ -9,7 +9,7 @@ defmodule RinhaWeb.ErrorJSON do
   # By default, Phoenix returns the status message from
   # the template name. For example, "404.json" becomes
   # "Not Found".
-  def render(template, _assigns) do
+  def render(_, _) do
     nil
   end
 end
