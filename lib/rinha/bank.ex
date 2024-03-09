@@ -14,6 +14,6 @@ defmodule Rinha.Bank do
   def extrato(id) do
     transaction_query = from t in Transaction, order_by: [desc: t.id], limit: 10
 
-    Repo.one(from p in Client, where: p.id == ^id, preload: [transactions: ^transaction_query])
+    Repo.one(from c in Client, where: c.id == ^id, preload: [transactions: ^transaction_query])
   end
 end
