@@ -31,6 +31,7 @@ defmodule RinhaWeb.ClientController do
     is_integer(params["valor"]) &&
       params["valor"] > 0 &&
       params["tipo"] in ["c", "d"] &&
+      is_binary(params["descricao"]) &&
       validate_descricao(String.length(params["descricao"]))
   end
 
