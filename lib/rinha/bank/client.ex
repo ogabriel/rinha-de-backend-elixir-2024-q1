@@ -2,9 +2,13 @@ defmodule Rinha.Bank.Client do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias Rinha.Bank.Transaction
+
   schema "clients" do
     field :limite, :integer
     field :saldo, :integer
+
+    has_many(:transactions, Transaction)
   end
 
   @doc false

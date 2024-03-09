@@ -2,11 +2,14 @@ defmodule Rinha.Bank.Transaction do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias Rinha.Bank.Client
+
   schema "transactions" do
     field :valor, :integer
     field :tipo, :string
     field :descriao, :string
-    field :client_id, :id
+
+    belongs_to(:client, Client)
 
     timestamps(type: :utc_datetime, updated_at: false)
   end
