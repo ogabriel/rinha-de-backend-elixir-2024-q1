@@ -1,16 +1,6 @@
 defmodule RinhaWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :rinha
 
-  # The session will be stored in the cookie and signed,
-  # this means its contents can be read but not tampered with.
-  # Set :encryption_salt if you would also like to encrypt it.
-  @session_options [
-    store: :cookie,
-    key: "_rinha_key",
-    signing_salt: "PzinUsu3",
-    same_site: "Lax"
-  ]
-
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
   if code_reloading? do
@@ -27,6 +17,5 @@ defmodule RinhaWeb.Endpoint do
 
   plug Plug.MethodOverride
   plug Plug.Head
-  plug Plug.Session, @session_options
   plug RinhaWeb.Router
 end

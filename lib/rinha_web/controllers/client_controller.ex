@@ -11,6 +11,8 @@ defmodule RinhaWeb.ClientController do
   def transacoes(conn, %{"id" => id} = params) do
     id = parse_id(id)
 
+    raise ArgumentError, message: "invalid argument foo"
+
     if is_integer(id) && id > 0 && id < 6 do
       if validate_params(params) do
         case Bank.transacoes(id, params) do
