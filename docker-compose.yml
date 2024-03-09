@@ -28,7 +28,7 @@ services:
       resources:
         limits:
           cpus: '0.35'
-          memory: '100MB'
+          memory: '150MB'
 
   app2:
     <<: *app1
