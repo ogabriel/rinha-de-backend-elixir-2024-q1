@@ -22,7 +22,7 @@ defmodule Rinha.Bank do
     query = from(c in Client, where: c.id == ^id, lock: "FOR UPDATE")
 
     Repo.transaction(fn repo ->
-      with %Client{} = client <- repo.one(query),
+      with [client] <- repo.all(query),
            novo_saldo <- client.saldo + credito_ou_debito,
            true <- novo_saldo >= -client.limite do
         client
@@ -41,6 +41,6 @@ defmodule Rinha.Bank do
   def extrato(id) do
     transaction_query = from t in Transaction, order_by: [desc: t.id], limit: 10
 
-    Repo.one(from c in Client, where: c.id == ^id, preload: [transactions: ^transaction_query])
+    Repo.all(from c in Client, where: c.id == ^id, preload: [transactions: ^transaction_query])
   end
 end

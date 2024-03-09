@@ -46,7 +46,7 @@ defmodule RinhaWeb.ClientController do
     id = parse_id(id)
 
     if is_integer(id) && id > 0 && id < 6 do
-      with %Client{} = client <- Bank.extrato(id) do
+      with [client] <- Bank.extrato(id) do
         render(conn, :extrato, client: client)
       else
         _ -> send_resp(conn, 404, "")
