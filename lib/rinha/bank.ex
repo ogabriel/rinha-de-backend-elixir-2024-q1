@@ -7,6 +7,7 @@ defmodule Rinha.Bank do
   alias Rinha.Repo
 
   alias Rinha.Bank.Client
+  alias Rinha.Bank.Transaction
 
   @doc """
   Returns the list of clients.
@@ -100,5 +101,11 @@ defmodule Rinha.Bank do
   """
   def change_client(%Client{} = client, attrs \\ %{}) do
     Client.changeset(client, attrs)
+  end
+
+  def extrato(id) do
+    transaction_query = from t in Transaction, order_by: [desc: t.id], limit: 10
+
+    Repo.one(from p in Client, where: p.id == ^id, preload: [transactions: ^transaction_query])
   end
 end
