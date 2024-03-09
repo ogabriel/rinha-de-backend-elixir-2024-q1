@@ -2,11 +2,6 @@ defmodule RinhaWeb.ClientController do
   use RinhaWeb, :controller
 
   alias Rinha.Bank
-  alias Rinha.Bank.Client
-  alias Rinha.Bank.Transaction
-
-  alias Rinha.Repo
-  import Ecto.Query
 
   def transacoes(conn, %{"id" => id} = params) do
     id = parse_id(id)
