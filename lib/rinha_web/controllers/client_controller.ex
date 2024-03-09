@@ -20,19 +20,13 @@ defmodule RinhaWeb.ClientController do
             |> json(result)
 
           _ ->
-            conn
-            |> send_resp(422, ~c"")
-            |> halt
+            send_resp(conn, 422, "")
         end
       else
-        conn
-        |> send_resp(422, ~c"")
-        |> halt
+        send_resp(conn, 422, "")
       end
     else
-      conn
-      |> send_resp(404, ~c"")
-      |> halt
+      send_resp(conn, 404, "")
     end
   end
 
