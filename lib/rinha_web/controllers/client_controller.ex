@@ -21,20 +21,17 @@ defmodule RinhaWeb.ClientController do
 
           _ ->
             conn
-            |> resp(422, nil)
-            |> send_resp
+            |> send_resp(422, ~c"")
             |> halt
         end
       else
         conn
-        |> resp(422, nil)
-        |> send_resp
+        |> send_resp(422, ~c"")
         |> halt
       end
     else
       conn
-      |> resp(404, nil)
-      |> send_resp
+      |> send_resp(404, ~c"")
       |> halt
     end
   end
