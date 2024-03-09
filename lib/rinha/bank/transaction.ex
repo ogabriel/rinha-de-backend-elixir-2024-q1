@@ -14,13 +14,6 @@ defmodule Rinha.Bank.Transaction do
     timestamps(type: :utc_datetime, updated_at: false)
   end
 
-  @doc false
-  def changeset(transaction, attrs) do
-    transaction
-    |> cast(attrs, [:valor, :tipo, :descricao], empty_values: [])
-    |> validate_required([:valor, :tipo, :descricao])
-  end
-
   def parse(attrs, client_id) do
     %__MODULE__{}
     |> cast(attrs, [:valor, :tipo, :descricao], empty_values: [])

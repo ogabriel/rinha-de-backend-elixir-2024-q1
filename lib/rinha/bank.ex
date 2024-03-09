@@ -3,9 +3,9 @@ defmodule Rinha.Bank do
   The Bank context.
   """
 
-  import Ecto.Query, warn: false
-  alias Rinha.Repo
+  import Ecto.Query, only: [from: 2]
 
+  alias Rinha.Repo
   alias Rinha.Bank.Client
   alias Rinha.Bank.Transaction
 
@@ -26,7 +26,7 @@ defmodule Rinha.Bank do
            novo_saldo <- client.saldo + credito_ou_debito,
            true <- novo_saldo >= -client.limite do
         client
-        |> Client.changeset(%{saldo: novo_saldo})
+        |> Ecto.Changeset.change(%{saldo: novo_saldo})
         |> repo.update
 
         repo.insert(transacao)
