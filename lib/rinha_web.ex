@@ -35,9 +35,7 @@ defmodule RinhaWeb do
 
   def controller do
     quote do
-      use Phoenix.Controller,
-        formats: [:html, :json],
-        layouts: [html: RinhaWeb.Layouts]
+      use Phoenix.Controller, formats: [:json]
 
       import Plug.Conn
 
