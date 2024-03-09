@@ -8,8 +8,6 @@ defmodule RinhaWeb.ClientController do
   alias Rinha.Repo
   import Ecto.Query
 
-  action_fallback RinhaWeb.FallbackController
-
   def transacoes(conn, %{"id" => id} = params) do
     id = parse_id(id)
 
