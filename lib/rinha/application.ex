@@ -9,7 +9,6 @@ defmodule Rinha.Application do
   def start(_type, _args) do
     children = [
       Rinha.Repo,
-      {DNSCluster, query: Application.get_env(:rinha, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: Rinha.PubSub},
       # Start a worker by calling: Rinha.Worker.start_link(arg)
       # {Rinha.Worker, arg},
