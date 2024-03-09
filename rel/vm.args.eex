@@ -1,5 +1,9 @@
 +S 1
 
++swt very_low
++swtdcpu very_low
++swtdio very_low
+
 +sbwt none
 +sbwtdcpu none
 +sbwtdio none
