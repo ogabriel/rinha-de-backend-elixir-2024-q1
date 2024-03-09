@@ -5,7 +5,7 @@ defmodule Rinha.Repo.Migrations.CreateTransactions do
     create table(:transactions) do
       add :valor, :integer
       add :tipo, :string
-      add :descriao, :string
+      add :descricao, :string
       add :client_id, references(:clients, on_delete: :nothing)
 
       timestamps(type: :utc_datetime, updated_at: false)
