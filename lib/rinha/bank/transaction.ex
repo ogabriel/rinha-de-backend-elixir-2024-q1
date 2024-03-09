@@ -8,10 +8,9 @@ defmodule Rinha.Bank.Transaction do
     field :valor, :integer
     field :tipo, :string
     field :descricao, :string
+    field :realizada_em, :naive_datetime, default: NaiveDateTime.local_now()
 
     belongs_to(:client, Client)
-
-    timestamps(type: :utc_datetime, updated_at: false)
   end
 
   def parse(attrs, client_id) do
