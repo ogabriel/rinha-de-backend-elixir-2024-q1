@@ -19,6 +19,9 @@ defmodule RinhaWeb.ClientController do
             |> put_status(200)
             |> json(result)
 
+          {:error, :not_found} ->
+            send_resp(conn, 404, "")
+
           _ ->
             send_resp(conn, 422, "")
         end

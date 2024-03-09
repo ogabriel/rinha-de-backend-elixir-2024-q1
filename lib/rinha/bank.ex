@@ -33,7 +33,8 @@ defmodule Rinha.Bank do
 
         %{saldo: novo_saldo, limite: client.limite}
       else
-        _ -> repo.rollback(:whatever)
+        [] -> repo.rollback(:not_found)
+        _ -> repo.rollback(nil)
       end
     end)
   end
