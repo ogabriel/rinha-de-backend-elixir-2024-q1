@@ -10,14 +10,41 @@ defmodule RinhaWeb.ClientController do
 
   action_fallback RinhaWeb.FallbackController
 
+  # {
+  #     "valor": 1000,
+  #     "tipo" : "c",
+  #     "descricao" : "descricao"
+  # }
+
   def transacoes(conn, %{"id" => id} = params) do
-    send_resp(conn, 422, id)
+    id = parse_id(id)
+
+    if is_integer(id) && id > 0 && id < 6 do
+      if validate_params(params) do
+        send_resp(conn, 422, "ok")
+      else
+        send_resp(conn, 422, "")
+      end
+    else
+      send_resp(conn, 404, "")
+    end
+  end
+
+  defp validate_params(params) do
+    is_integer(params["valor"]) &&
+      params["valor"] > 0 &&
+      params["tipo"] in ["c", "d"] &&
+      validate_descricao(String.length(params["descricao"]))
+  end
+
+  defp validate_descricao(descricao_tamanho) do
+    descricao_tamanho > 0 && descricao_tamanho < 11
   end
 
   def extrato(conn, %{"id" => id}) do
     id = parse_id(id)
 
-    if is_number(id) && id > 0 do
+    if is_integer(id) && id > 0 && id < 6 do
       with %Client{} = client <- Bank.extrato(id) do
         render(conn, :extrato, client: client)
       else
