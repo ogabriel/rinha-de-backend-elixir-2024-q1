@@ -8,7 +8,7 @@ defmodule Rinha.Bank.Transaction do
     field :valor, :integer
     field :tipo, :string
     field :descricao, :string
-    field :realizada_em, :naive_datetime, default: NaiveDateTime.local_now()
+    field :realizada_em, :naive_datetime
 
     belongs_to(:client, Client)
   end
@@ -16,7 +16,8 @@ defmodule Rinha.Bank.Transaction do
   def parse(attrs, client_id) do
     %__MODULE__{}
     |> cast(attrs, [:valor, :tipo, :descricao], empty_values: [])
-    |> change(%{client_id: client_id})
+    |> put_change(:client_id, client_id)
+    |> put_change(:realizada_em, NaiveDateTime.local_now())
     |> apply_changes
   end
 end
