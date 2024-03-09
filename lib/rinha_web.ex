@@ -17,8 +17,6 @@ defmodule RinhaWeb do
   those modules here.
   """
 
-  def static_paths, do: ~w(assets fonts images favicon.ico robots.txt)
-
   def router do
     quote do
       use Phoenix.Router, helpers: false
@@ -51,8 +49,7 @@ defmodule RinhaWeb do
     quote do
       use Phoenix.VerifiedRoutes,
         endpoint: RinhaWeb.Endpoint,
-        router: RinhaWeb.Router,
-        statics: RinhaWeb.static_paths()
+        router: RinhaWeb.Router
     end
   end
 
