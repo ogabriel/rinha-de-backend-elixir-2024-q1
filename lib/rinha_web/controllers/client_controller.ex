@@ -14,14 +14,26 @@ defmodule RinhaWeb.ClientController do
     if is_integer(id) && id > 0 && id < 6 do
       if validate_params(params) do
         case Bank.transacoes(id, params) do
-          {:ok, result} -> render(conn, :transacoes, result: result)
-          _ -> send_resp(conn, 422, "")
+          {:ok, result} ->
+            render(conn, :transacoes, result: result)
+
+          _ ->
+            conn
+            |> resp(422, nil)
+            |> send_resp
+            |> halt
         end
       else
-        send_resp(conn, 422, "")
+        conn
+        |> resp(422, nil)
+        |> send_resp
+        |> halt
       end
     else
-      send_resp(conn, 404, "")
+      conn
+      |> resp(404, nil)
+      |> send_resp
+      |> halt
     end
   end
 
