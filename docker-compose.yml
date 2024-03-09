@@ -18,8 +18,6 @@ services:
       SECRET_KEY_BASE: xUZ2aYKI10TzUGY4juCkDIpip9LaDi8KOj0emd8HOHiFZh2zKT5sLXg+0/wzHfnw
       ERL_MAX_PORTS: 2046
       PORT: 9997
-      RELEASE_DISTRIBUTION: name
-      RELEASE_NODE: app1@127.0.0.1
     network_mode: host
     depends_on:
     - postgres
@@ -37,7 +35,6 @@ services:
     environment:
       <<: *env_app1
       PORT: 9998
-      RELEASE_NODE: app2@127.0.0.1
     command: ["release"]
 
   nginx:
