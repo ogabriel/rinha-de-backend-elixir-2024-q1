@@ -15,7 +15,9 @@ defmodule RinhaWeb.ClientController do
       if validate_params(params) do
         case Bank.transacoes(id, params) do
           {:ok, result} ->
-            render(conn, :transacoes, result: result)
+            conn
+            |> put_status(200)
+            |> json(result)
 
           _ ->
             conn
